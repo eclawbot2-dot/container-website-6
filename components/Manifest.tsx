@@ -33,7 +33,15 @@ export function Manifest() {
         </p>
 
         {/* ── Desktop / tablet: tabular manifest ───────────────────────── */}
-        <div className="hidden overflow-hidden border border-line md:block">
+        {/* Contained horizontal scroll: the fixed-width grid never forces
+            page-level overflow; it scrolls inside this wrapper if narrow. */}
+        <div
+          className="hidden overflow-x-auto border border-line md:block"
+          role="region"
+          aria-label={t.lineup.title}
+          tabIndex={0}
+        >
+          <div className="min-w-[760px]">
           {/* Column header row */}
           <div
             className={`grid items-center gap-4 border-b border-line bg-panel px-5 py-3 text-[10px] uppercase tracking-[0.2em] text-muted ${
@@ -100,6 +108,7 @@ export function Manifest() {
               </div>
             );
           })}
+          </div>
         </div>
 
         {/* ── Mobile: stacked manifest cards ───────────────────────────── */}
@@ -137,7 +146,7 @@ export function Manifest() {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 border border-amber px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber ${
+                      className={`inline-flex min-h-[44px] items-center gap-1.5 border border-amber px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
                         ar ? 'font-ar tracking-normal' : ''
                       }`}
                     >

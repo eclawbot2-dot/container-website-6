@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from './LangProvider';
-import { MAPS_URL, STATIC_MAP_URL, VENUE_COORDS } from '@/lib/config';
+import { MAPS_URL, mapsEmbedUrl, VENUE_COORDS } from '@/lib/config';
 
 export function Visit() {
   const { lang, t } = useLang();
@@ -63,32 +63,42 @@ export function Visit() {
             </div>
           </dl>
 
-          {/* Map panel */}
+          {/* Berth location — live Google Maps embed (no API key, lazy). */}
           <div className="flex flex-col border border-line bg-panel/40">
-            <div className="flex items-center justify-between border-b border-line px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-muted">
-              <span className="text-amber/80">PORT COORDINATES</span>
-              <span className="font-mono text-ink">
+            <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-muted">
+              <span className="text-amber/80" dir="ltr">BERTH LOCATION</span>
+              <span className="font-mono text-ink" dir="ltr">
                 {VENUE_COORDS.lat}°N · {VENUE_COORDS.lng}°E
               </span>
             </div>
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block flex-1"
-              aria-label={t.visit.mapCta}
-            >
-              <img
-                src={STATIC_MAP_URL}
-                alt="Map of Shams Container Terminal, Jeddah"
+            <div className="relative flex-1">
+              <iframe
+                src={mapsEmbedUrl(lang)}
+                title={ar ? 'خريطة محطة شمس للحاويات، جدة' : 'Map of Shams Container Terminal, Jeddah'}
                 loading="lazy"
-                className="h-full min-h-[260px] w-full object-cover opacity-80 contrast-110 grayscale transition-opacity group-hover:opacity-100"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-full min-h-[280px] w-full border-0"
+                style={{ filter: 'grayscale(0.35) contrast(1.05) brightness(0.95)' }}
               />
-              <span className="pointer-events-none absolute inset-0 bg-amber/[0.06] mix-blend-screen" />
-              <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-hazard glow">
-                ⊕
-              </span>
-            </a>
+              {/* Amber phosphor wash to fit the terminal look (clicks pass through). */}
+              <span
+                className="pointer-events-none absolute inset-0 bg-amber/[0.05] mix-blend-screen"
+                aria-hidden
+              />
+            </div>
+            <div className="border-t border-line px-4 py-3">
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-amber transition-colors hover:text-amber-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
+                  ar ? 'font-ar tracking-normal' : ''
+                }`}
+              >
+                <span aria-hidden>◎</span>
+                {t.visit.mapCta}
+              </a>
+            </div>
           </div>
         </div>
       </div>

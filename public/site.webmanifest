@@ -1,0 +1,13 @@
+{
+  "name": "THE CONTAINER · Jeddah · Red Sea Port",
+  "short_name": "THE CONTAINER",
+  "description": "Jeddah's industrial techno & house venue on the Red Sea port.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070806",
+  "theme_color": "#070806",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

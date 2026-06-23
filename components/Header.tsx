@@ -34,7 +34,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-amber ${
+              className={`inline-flex min-h-[44px] items-center text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-amber focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
                 ar ? 'font-ar tracking-normal text-sm' : ''
               }`}
             >

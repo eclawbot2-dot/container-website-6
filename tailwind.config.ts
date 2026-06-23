@@ -25,7 +25,9 @@ const config: Config = {
         // Hazard / status accents
         hazard: '#ff5a1f',
         ink: '#c9c2ad',
-        muted: '#6f6a58',
+        // Bumped from #6f6a58 (3.71:1, fails AA) to #8a8470 (5.37:1) so the
+        // many small mono labels/captions clear WCAG AA on the near-black bg.
+        muted: '#8a8470',
       },
       fontFamily: {
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
