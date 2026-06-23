@@ -10,10 +10,8 @@
 // TODO real IG unknown — set INSTAGRAM_URL to the confirmed profile when known.
 export const INSTAGRAM_URL: string | null = null;
 
-// Tickets: NO verified ticketing URL. Do NOT link to Instagram or a guessed
-// ticketer (Platinumlist / ticketmena / etc.). Visible placeholder only.
-// TODO real ticketing URL unknown — set per-event `ticketsUrl` or this default.
-export const TICKETS_URL: string | null = null;
+// Webook Jeddah events — swap to specific event slug when on sale
+export const TICKETS_URL: string | null = 'https://webook.com/explore?city=JED&country=SA';
 
 // Contact email: no live mailbox provisioned at this address yet. Shown as a
 // label, not a mailto: that would bounce. Flip to a real address to enable.

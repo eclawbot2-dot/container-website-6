@@ -2,7 +2,7 @@
 
 import { useLang } from './LangProvider';
 import { formatEventDate, containerCode } from '@/lib/i18n';
-import { EVENTS } from '@/lib/config';
+import { EVENTS, ticketsHref } from '@/lib/config';
 
 export function Manifest() {
   const { lang, t } = useLang();
@@ -59,6 +59,7 @@ export function Manifest() {
 
           {sorted.map((ev, i) => {
             const pending = ev.tba;
+            const tix = ticketsHref(ev);
             return (
               <div
                 key={ev.id}
@@ -88,19 +89,34 @@ export function Manifest() {
                     {pending ? t.lineup.statusPending : t.lineup.statusBoarding}
                   </span>
                 </span>
-                <span className={ar ? 'text-left' : 'text-right'}>
+                <span className={`flex flex-wrap items-center gap-2 ${ar ? 'justify-start' : 'justify-end'}`}>
                   {pending ? (
                     <span className="text-xs text-muted">—</span>
                   ) : (
-                    <a
-                      href={`/events/${ev.id}/`}
-                      className={`inline-flex items-center gap-1.5 border border-amber/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
-                        ar ? 'font-ar tracking-normal' : ''
-                      }`}
-                    >
-                      {t.lineup.detailsCta}
-                      <span aria-hidden>{ar ? '◂' : '▸'}</span>
-                    </a>
+                    <>
+                      {tix && (
+                        <a
+                          href={tix}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${t.lineup.ticketsCta} — ${ar ? ev.artistAr : ev.artist}`}
+                          className={`inline-flex items-center gap-1.5 border border-amber bg-amber px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-void transition-colors hover:bg-amber-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
+                            ar ? 'font-ar tracking-normal' : ''
+                          }`}
+                        >
+                          {t.lineup.ticketsCta}
+                        </a>
+                      )}
+                      <a
+                        href={`/events/${ev.id}/`}
+                        className={`inline-flex items-center gap-1.5 border border-amber/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
+                          ar ? 'font-ar tracking-normal' : ''
+                        }`}
+                      >
+                        {t.lineup.detailsCta}
+                        <span aria-hidden>{ar ? '◂' : '▸'}</span>
+                      </a>
+                    </>
                   )}
                 </span>
               </div>
@@ -113,6 +129,7 @@ export function Manifest() {
         <div className="space-y-4 md:hidden">
           {sorted.map((ev) => {
             const pending = ev.tba;
+            const tix = ticketsHref(ev);
             return (
               <div key={ev.id} className="border border-line bg-panel/40 p-4">
                 <div className="mb-3 flex items-center justify-between gap-2 text-[10px] uppercase tracking-[0.18em]">
@@ -140,15 +157,30 @@ export function Manifest() {
                     {ev.bay}
                   </span>
                   {!pending && (
-                    <a
-                      href={`/events/${ev.id}/`}
-                      className={`inline-flex min-h-[44px] items-center gap-1.5 border border-amber px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
-                        ar ? 'font-ar tracking-normal' : ''
-                      }`}
-                    >
-                      {t.lineup.detailsCta}
-                      <span aria-hidden>{ar ? '◂' : '▸'}</span>
-                    </a>
+                    <span className="flex items-center gap-2">
+                      {tix && (
+                        <a
+                          href={tix}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${t.lineup.ticketsCta} — ${ar ? ev.artistAr : ev.artist}`}
+                          className={`inline-flex min-h-[44px] items-center gap-1.5 border border-amber bg-amber px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-void transition-colors hover:bg-amber-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
+                            ar ? 'font-ar tracking-normal' : ''
+                          }`}
+                        >
+                          {t.lineup.ticketsCta}
+                        </a>
+                      )}
+                      <a
+                        href={`/events/${ev.id}/`}
+                        className={`inline-flex min-h-[44px] items-center gap-1.5 border border-amber px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
+                          ar ? 'font-ar tracking-normal' : ''
+                        }`}
+                      >
+                        {t.lineup.detailsCta}
+                        <span aria-hidden>{ar ? '◂' : '▸'}</span>
+                      </a>
+                    </span>
                   )}
                 </div>
               </div>
