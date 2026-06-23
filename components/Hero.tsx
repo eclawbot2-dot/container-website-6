@@ -10,7 +10,7 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden border-b border-line">
-      {/* Gritty port image, heavily darkened, as backdrop */}
+      {/* Live-event-in-industrial-port image (crowd + stage lights + steel structures), heavily darkened, as decorative backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <img
           src="/images/port.jpg"
