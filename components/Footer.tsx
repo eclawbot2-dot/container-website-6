@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from './LangProvider';
-import { INSTAGRAM_URL, INSTAGRAM_HANDLE, CONTACT_EMAIL } from '@/lib/config';
+import { INSTAGRAM_URL, CONTACT_EMAIL } from '@/lib/config';
 
 export function Footer() {
   const { lang, t } = useLang();
@@ -41,14 +41,24 @@ export function Footer() {
             >
               {t.footer.follow}
             </h3>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-ink transition-colors hover:text-amber"
-            >
-              <span aria-hidden>◎</span>@{INSTAGRAM_HANDLE}
-            </a>
+            {INSTAGRAM_URL ? (
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-ink transition-colors hover:text-amber"
+              >
+                <span aria-hidden>◎</span>
+                Instagram
+              </a>
+            ) : (
+              // No verified Instagram handle — show a labeled placeholder, never
+              // a guessed instagram.com/... link.
+              <span className={`inline-flex items-center gap-2 text-sm text-muted ${ar ? 'font-ar' : ''}`}>
+                <span aria-hidden>◎</span>
+                {t.footer.igSoon}
+              </span>
+            )}
           </div>
 
           {/* Contact */}
@@ -60,13 +70,21 @@ export function Footer() {
             >
               {t.footer.contact}
             </h3>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-2 text-sm text-ink transition-colors hover:text-amber"
-            >
-              <span aria-hidden>✉</span>
-              {CONTACT_EMAIL}
-            </a>
+            {CONTACT_EMAIL ? (
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex items-center gap-2 text-sm text-ink transition-colors hover:text-amber"
+              >
+                <span aria-hidden>✉</span>
+                {CONTACT_EMAIL}
+              </a>
+            ) : (
+              // No live mailbox yet — labeled placeholder, not a mailto: that bounces.
+              <span className={`inline-flex items-center gap-2 text-sm text-muted ${ar ? 'font-ar' : ''}`}>
+                <span aria-hidden>✉</span>
+                {t.footer.contactSoon}
+              </span>
+            )}
           </div>
         </div>
 

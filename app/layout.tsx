@@ -104,7 +104,8 @@ const venueJsonLd = {
   image: `${SITE_URL}/og.jpg`,
   address: ADDRESS,
   geo: GEO,
-  sameAs: ['https://instagram.com/thecontainer.jed'],
+  // No verified social profile yet — omit sameAs rather than assert a guessed
+  // Instagram URL in structured data (that would be a fabricated claim).
 };
 
 // Only emit structured data for confirmed events. TBA placeholders have no
@@ -117,7 +118,7 @@ const eventsJsonLd = EVENTS.filter((e) => !e.tba).map((e) => ({
   startDate: e.dateISO,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   eventStatus: 'https://schema.org/EventScheduled',
-  url: SITE_URL,
+  url: `${SITE_URL}/events/${e.id}/`,
   image: `${SITE_URL}/og.jpg`,
   performer: { '@type': 'PerformingGroup', name: e.artist },
   location: {

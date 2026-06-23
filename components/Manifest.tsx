@@ -2,7 +2,7 @@
 
 import { useLang } from './LangProvider';
 import { formatEventDate, containerCode } from '@/lib/i18n';
-import { EVENTS, INSTAGRAM_URL } from '@/lib/config';
+import { EVENTS } from '@/lib/config';
 
 export function Manifest() {
   const { lang, t } = useLang();
@@ -54,7 +54,7 @@ export function Manifest() {
             <span>{t.lineup.cols.etd}</span>
             <span>{t.lineup.cols.bay}</span>
             <span>{t.lineup.cols.status}</span>
-            <span className={ar ? 'text-left' : 'text-right'}>{t.lineup.ticketsCta}</span>
+            <span className={ar ? 'text-left' : 'text-right'}>{t.lineup.detailsCta}</span>
           </div>
 
           {sorted.map((ev, i) => {
@@ -93,14 +93,12 @@ export function Manifest() {
                     <span className="text-xs text-muted">—</span>
                   ) : (
                     <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 border border-amber/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void ${
+                      href={`/events/${ev.id}/`}
+                      className={`inline-flex items-center gap-1.5 border border-amber/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
                         ar ? 'font-ar tracking-normal' : ''
                       }`}
                     >
-                      {t.lineup.ticketsCta}
+                      {t.lineup.detailsCta}
                       <span aria-hidden>{ar ? '◂' : '▸'}</span>
                     </a>
                   )}
@@ -143,14 +141,12 @@ export function Manifest() {
                   </span>
                   {!pending && (
                     <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/events/${ev.id}/`}
                       className={`inline-flex min-h-[44px] items-center gap-1.5 border border-amber px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-amber transition-colors hover:bg-amber hover:text-void focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
                         ar ? 'font-ar tracking-normal' : ''
                       }`}
                     >
-                      {t.lineup.ticketsCta}
+                      {t.lineup.detailsCta}
                       <span aria-hidden>{ar ? '◂' : '▸'}</span>
                     </a>
                   )}

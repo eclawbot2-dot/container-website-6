@@ -2,7 +2,7 @@
 
 import { useLang } from './LangProvider';
 import { SplitFlap } from './SplitFlap';
-import { INSTAGRAM_URL, VENUE_COORDS } from '@/lib/config';
+import { VENUE_COORDS } from '@/lib/config';
 
 export function Hero() {
   const { lang, t } = useLang();
@@ -97,15 +97,13 @@ export function Hero() {
             {t.hero.cta}
           </a>
           <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 border border-line px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors hover:border-amber hover:text-amber ${
+            href="#visit"
+            className={`inline-flex items-center gap-2 border border-line px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors hover:border-amber hover:text-amber focus:outline-none focus-visible:ring-2 focus-visible:ring-amber ${
               ar ? 'font-ar tracking-normal' : ''
             }`}
           >
             <span aria-hidden>◎</span>
-            {t.hero.instagram}
+            {t.nav.visit}
           </a>
         </div>
       </div>

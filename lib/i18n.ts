@@ -32,12 +32,33 @@ export type Dict = {
     title: string;
     subtitle: string;
     ticketsCta: string;
+    detailsCta: string; // "Details" — opens the event detail page
     tba: string;
     note: string;
     // Manifest column headers
     cols: { ref: string; vessel: string; etd: string; bay: string; status: string; action: string };
     statusBoarding: string; // "BOARDING"
     statusPending: string; // "MANIFEST PENDING"
+  };
+  // Event detail page ("vessel detail / manifest entry")
+  event: {
+    docId: string; // "VESSEL DETAIL / MANIFEST ENTRY"
+    back: string; // "Back to manifest"
+    artistLabel: string;
+    dateLabel: string;
+    timeLabel: string;
+    venueLabel: string;
+    locationLabel: string;
+    genreLabel: string;
+    bioLabel: string;
+    venueName: string;
+    venueLine: string;
+    timeTba: string; // "Time to be announced"
+    subjectToChange: string; // "Lineup subject to change"
+    ticketsCta: string;
+    ticketsSoon: string; // placeholder label when no ticket URL
+    mapCta: string;
+    notFound: string;
   };
   visit: {
     eyebrow: string;
@@ -59,6 +80,8 @@ export type Dict = {
     rights: string;
     eventsNote: string;
     endOfManifest: string; // "END OF MANIFEST"
+    igSoon: string; // placeholder when no verified IG handle
+    contactSoon: string; // placeholder when no live mailbox
   };
   months: string[];
   weekdays: string[];
@@ -104,11 +127,31 @@ export const dict: Record<Lang, Dict> = {
       title: 'Events Manifest',
       subtitle: 'World-class techno and house, on the edge of the Red Sea.',
       ticketsCta: 'Tickets',
+      detailsCta: 'Details',
       tba: 'More to be announced',
-      note: 'Lineup and dates are subject to change. Follow our Instagram for the latest announcements and ticketing.',
+      note: 'Lineup and dates are subject to change. Ticketing and announcements will be published here as confirmed.',
       cols: { ref: 'REF', vessel: 'VESSEL / ARTIST', etd: 'ETD / DATE', bay: 'BAY / STAGE', status: 'STATUS', action: '' },
       statusBoarding: 'BOARDING',
       statusPending: 'MANIFEST PENDING',
+    },
+    event: {
+      docId: 'VESSEL DETAIL / MANIFEST ENTRY',
+      back: 'Back to manifest',
+      artistLabel: 'VESSEL / ARTIST',
+      dateLabel: 'ETD / DATE',
+      timeLabel: 'DOORS / TIME',
+      venueLabel: 'BERTH / VENUE',
+      locationLabel: 'LOCATION',
+      genreLabel: 'CARGO / GENRE',
+      bioLabel: 'MANIFEST NOTES',
+      venueName: 'The Container',
+      venueLine: 'Shams Container Terminal, Al Moulysaa district, Jeddah port area, Red Sea coast, Saudi Arabia.',
+      timeTba: 'Time to be announced',
+      subjectToChange: 'Lineup subject to change.',
+      ticketsCta: 'Tickets',
+      ticketsSoon: 'Tickets — on sale soon',
+      mapCta: 'Open in Maps',
+      notFound: 'Manifest entry not found.',
     },
     visit: {
       eyebrow: 'Plan your night',
@@ -134,6 +177,8 @@ export const dict: Record<Lang, Dict> = {
       rights: 'All rights reserved.',
       eventsNote: 'Live electronic music events · Jeddah, Saudi Arabia',
       endOfManifest: 'END OF MANIFEST',
+      igSoon: 'Instagram — coming soon',
+      contactSoon: 'Contact details — coming soon',
     },
     months: [
       'January', 'February', 'March', 'April', 'May', 'June',
@@ -180,11 +225,31 @@ export const dict: Record<Lang, Dict> = {
       title: 'بيان الفعاليات',
       subtitle: 'تكنو وهاوس على أعلى مستوى، على حافة البحر الأحمر.',
       ticketsCta: 'التذاكر',
+      detailsCta: 'التفاصيل',
       tba: 'سيُعلن عن المزيد',
-      note: 'العروض والتواريخ قابلة للتغيير. تابع حسابنا على إنستغرام لآخر الإعلانات والتذاكر.',
+      note: 'العروض والتواريخ قابلة للتغيير. سيتم نشر التذاكر والإعلانات هنا فور تأكيدها.',
       cols: { ref: 'مرجع', vessel: 'السفينة / الفنان', etd: 'التاريخ', bay: 'الرصيف / المسرح', status: 'الحالة', action: '' },
       statusBoarding: 'الصعود',
       statusPending: 'بيان قيد الإعداد',
+    },
+    event: {
+      docId: 'تفاصيل السفينة / مدخل البيان',
+      back: 'العودة إلى البيان',
+      artistLabel: 'السفينة / الفنان',
+      dateLabel: 'التاريخ',
+      timeLabel: 'الأبواب / الوقت',
+      venueLabel: 'الرصيف / المكان',
+      locationLabel: 'الموقع',
+      genreLabel: 'الحمولة / النوع',
+      bioLabel: 'ملاحظات البيان',
+      venueName: 'ذا كونتينر',
+      venueLine: 'محطة شمس للحاويات، حي المُليساء، منطقة ميناء جدة، ساحل البحر الأحمر، المملكة العربية السعودية.',
+      timeTba: 'سيُعلن عن الوقت لاحقًا',
+      subjectToChange: 'العروض قابلة للتغيير.',
+      ticketsCta: 'التذاكر',
+      ticketsSoon: 'التذاكر — قريبًا',
+      mapCta: 'افتح في الخرائط',
+      notFound: 'مدخل البيان غير موجود.',
     },
     visit: {
       eyebrow: 'خطّط لليلتك',
@@ -210,6 +275,8 @@ export const dict: Record<Lang, Dict> = {
       rights: 'جميع الحقوق محفوظة.',
       eventsNote: 'فعاليات موسيقى إلكترونية حيّة · جدة، المملكة العربية السعودية',
       endOfManifest: 'نهاية البيان',
+      igSoon: 'إنستغرام — قريبًا',
+      contactSoon: 'تفاصيل التواصل — قريبًا',
     },
     months: [
       'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
