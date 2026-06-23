@@ -94,7 +94,7 @@ export function Manifest() {
                     <span className="text-xs text-muted">—</span>
                   ) : (
                     <>
-                      {tix && (
+                      {tix ? (
                         <a
                           href={tix}
                           target="_blank"
@@ -106,6 +106,16 @@ export function Manifest() {
                         >
                           {t.lineup.ticketsCta}
                         </a>
+                      ) : (
+                        // No ticket URL yet → visible non-link "on sale soon" placeholder.
+                        <span
+                          aria-disabled="true"
+                          className={`inline-flex cursor-default items-center gap-1.5 border border-amber/40 bg-amber/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber/80 ${
+                            ar ? 'font-ar tracking-normal' : ''
+                          }`}
+                        >
+                          {t.event.ticketsSoon}
+                        </span>
                       )}
                       <a
                         href={`/events/${ev.id}/`}
@@ -158,7 +168,7 @@ export function Manifest() {
                   </span>
                   {!pending && (
                     <span className="flex items-center gap-2">
-                      {tix && (
+                      {tix ? (
                         <a
                           href={tix}
                           target="_blank"
@@ -170,6 +180,16 @@ export function Manifest() {
                         >
                           {t.lineup.ticketsCta}
                         </a>
+                      ) : (
+                        // No ticket URL yet → visible non-link "on sale soon" placeholder.
+                        <span
+                          aria-disabled="true"
+                          className={`inline-flex min-h-[44px] cursor-default items-center gap-1.5 border border-amber/40 bg-amber/5 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-amber/80 ${
+                            ar ? 'font-ar tracking-normal' : ''
+                          }`}
+                        >
+                          {t.event.ticketsSoon}
+                        </span>
                       )}
                       <a
                         href={`/events/${ev.id}/`}

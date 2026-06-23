@@ -10,8 +10,8 @@
 // TODO real IG unknown — set INSTAGRAM_URL to the confirmed profile when known.
 export const INSTAGRAM_URL: string | null = null;
 
-// Webook Jeddah events — swap to specific event slug when on sale
-export const TICKETS_URL: string | null = 'https://webook.com/explore?city=JED&country=SA';
+// TODO: no ticket URL yet — placeholder until on sale
+export const TICKETS_URL: string | null = null;
 
 // Contact email: no live mailbox provisioned at this address yet. Shown as a
 // label, not a mailto: that would bounce. Flip to a real address to enable.
