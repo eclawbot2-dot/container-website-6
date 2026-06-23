@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #070806;
+  color: #c9c2ad;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle CRT grid + vignette over the whole page */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 176, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 176, 0, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Dotted leader between a label and a value (manifest style) */
+.leader {
+  flex: 1;
+  margin: 0 0.6rem;
+  border-bottom: 1px dotted #2a2e25;
+  transform: translateY(-0.18em);
+}
+
+/* Stamped / stencil label box */
+.stamp {
+  border: 1.5px solid currentColor;
+  padding: 0.1rem 0.45rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.14) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Amber phosphor text glow */
+.glow {
+  text-shadow: 0 0 6px rgba(255, 176, 0, 0.35);
+}
+.glow-green {
+  text-shadow: 0 0 6px rgba(55, 255, 139, 0.35);
+}
+
+/* Hazard tape stripe */
+.hazard-tape {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #ffb000 0px,
+    #ffb000 14px,
+    #070806 14px,
+    #070806 28px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-flicker,
+  .animate-flip,
+  .animate-scan,
+  .animate-blink {
+    animation: none !important;
+  }
+  .scanlines::after {
+    display: none;
+  }
+}
+
+/* RTL: mirror dotted leaders & keep tabular alignment sensible */
+[dir='rtl'] .leader {
+  /* border is symmetric; nothing extra needed */
+}
