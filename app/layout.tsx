@@ -147,7 +147,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* MusicVenue + MusicEvent structured data (Google rich results). */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          // Escape "<" so no content string can ever break out of the <script>
+          // element (standard JSON-LD embedding hardening).
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
       </head>
       <body className="bg-void font-mono antialiased">

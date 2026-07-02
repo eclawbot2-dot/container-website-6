@@ -16,7 +16,10 @@ export const dynamicParams = false;
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const ev = getEvent(params.slug);
   if (!ev || ev.tba) {
-    return { title: 'Event · THE CONTAINER' };
+    // TBA placeholder page: keep it reachable from the manifest but out of
+    // search indexes (no real performer/date content to rank; it's also
+    // deliberately excluded from sitemap.xml).
+    return { title: 'Event · THE CONTAINER', robots: { index: false, follow: true } };
   }
   const title = `${ev.artist} · THE CONTAINER · Jeddah`;
   const desc = `${ev.artist} at THE CONTAINER — Shams Container Terminal, Jeddah, Red Sea port. ${ev.bio.en}`;
@@ -83,7 +86,9 @@ export default function EventPage({ params }: { params: { slug: string } }) {
       {jsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          // Escape "<" so no content string can ever break out of the <script>
+          // element (standard JSON-LD embedding hardening).
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
       )}
       <Header />

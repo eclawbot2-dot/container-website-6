@@ -1,15 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 /**
  * Split-flap / departures-board style text. Each character "flips" into place
- * on mount. Respects prefers-reduced-motion (CSS handles the no-anim case).
+ * as soon as the stylesheet loads (pure CSS animation — no JS gate, so the
+ * hero H1 is never stuck invisible without JS or before hydration).
+ * Respects prefers-reduced-motion (CSS sets animation:none → fully visible).
  */
 export function SplitFlap({ text, className = '' }: { text: string; className?: string }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   const chars = Array.from(text);
 
   return (
@@ -18,9 +15,7 @@ export function SplitFlap({ text, className = '' }: { text: string; className?: 
         <span
           key={`${i}-${ch}`}
           aria-hidden
-          className={`inline-block min-w-[0.62em] overflow-hidden text-center ${
-            mounted ? 'animate-flip' : 'opacity-0'
-          }`}
+          className="inline-block min-w-[0.62em] animate-flip overflow-hidden text-center"
           style={{ animationDelay: `${Math.min(i * 45, 900)}ms` }}
         >
           {ch === ' ' ? ' ' : ch}

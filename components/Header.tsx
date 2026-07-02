@@ -7,16 +7,19 @@ export function Header() {
   const { lang, t } = useLang();
   const ar = lang === 'ar';
 
+  // Root-anchored hrefs: on the homepage the browser treats "/#x" as an
+  // in-page anchor (smooth scroll still works); on /events/* pages a bare
+  // "#x" would silently do nothing — these sections only exist on "/".
   const links = [
-    { href: '#about', label: t.nav.about },
-    { href: '#manifest', label: t.nav.lineup },
-    { href: '#visit', label: t.nav.visit },
+    { href: '/#about', label: t.nav.about },
+    { href: '/#manifest', label: t.nav.lineup },
+    { href: '/#visit', label: t.nav.visit },
   ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-void/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <a href="#top" className="flex items-baseline gap-2 whitespace-nowrap">
+        <a href="/#top" className="flex items-baseline gap-2 whitespace-nowrap">
           <span className="text-amber glow" aria-hidden>
             ▮
           </span>

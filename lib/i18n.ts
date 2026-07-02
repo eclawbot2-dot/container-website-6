@@ -60,6 +60,13 @@ export type Dict = {
     mapCta: string;
     notFound: string;
   };
+  // Branded 404 page (replaces Next's default, which is invisible on our dark body)
+  notFound: {
+    title: string;
+    body: string;
+    home: string;
+    manifest: string;
+  };
   visit: {
     eyebrow: string;
     title: string;
@@ -152,6 +159,12 @@ export const dict: Record<Lang, Dict> = {
       ticketsSoon: 'Tickets — on sale soon',
       mapCta: 'Open in Maps',
       notFound: 'Manifest entry not found.',
+    },
+    notFound: {
+      title: 'Page not found',
+      body: 'The page you requested is not on the manifest. It may have shipped out, or the address was mistyped.',
+      home: 'Back to home',
+      manifest: 'View manifest',
     },
     visit: {
       eyebrow: 'Plan your night',
@@ -250,6 +263,12 @@ export const dict: Record<Lang, Dict> = {
       ticketsSoon: 'التذاكر — قريبًا',
       mapCta: 'افتح في الخرائط',
       notFound: 'مدخل البيان غير موجود.',
+    },
+    notFound: {
+      title: 'الصفحة غير موجودة',
+      body: 'الصفحة التي طلبتها غير مدرجة في البيان. ربما غادرت الميناء، أو أن العنوان غير صحيح.',
+      home: 'العودة إلى الرئيسية',
+      manifest: 'استعرض البيان',
     },
     visit: {
       eyebrow: 'خطّط لليلتك',
